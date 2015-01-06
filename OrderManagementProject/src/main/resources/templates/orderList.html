@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Order History</title>
+</head>
+<body>
+	Order History
+	<div th:if="${not #lists.isEmpty(orderList)}">
+		<div th:each="order: ${orderList}">
+			<br /> <br /> <br />
+			<div th:if="${order.prodCategory=='cars'}">
+			
+			<b> Cars </b>
+				<p th:text="'Model: ' + ${order.prodModel}" />
+				<p th:text="'Description: ' + ${order.prodDescription}" />
+				<p th:text="'Price: ' + ${order.prodPrice}" />
+				<p th:text="'OrderStatus: ' + ${order.orderStatus}" />
+
+			</div>
+
+			<div th:if="${order.prodCategory=='tvs'}">
+			
+			<b>TV</b>
+				<p th:text="'Brand ' + ${order.prodBrand}" />
+				<p th:text="'Description: ' + ${order.prodDescription}" />
+				<p th:text="'Price: ' + ${order.prodPrice}" />
+				<p th:text="'OrderStatus: ' + ${order.orderStatus}" />
+			</div>
+
+			<div th:if="${order.prodCategory=='nps'}">
+			<b>Nail Polish</b>
+				<p th:text="'Brand: ' + ${order.prodBrand}" />
+				<p th:text="'Color: ' + ${order.prodColor}" />
+				<p th:text="'Description: ' + ${order.prodDescription}" />
+				<p th:text="'Price: ' + ${order.prodPrice}" />
+				<p th:text="'OrderStatus: ' + ${order.orderStatus}" />
+			</div>
+
+			 <form th:action="@{/CancelOrder/} + ${order.orderId}" method="GET">
+            <input type="submit" value="CancelOrder"/>
+        </form> 
+
+		</div>
+	</div>
+
+	<br />
+	<br />
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out" />
+	</form>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="http://localhost:3000/#/store">Go back to Site</a>
+</body>
+</html>

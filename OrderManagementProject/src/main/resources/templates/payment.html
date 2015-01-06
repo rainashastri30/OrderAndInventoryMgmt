@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Payment and Shipping Information</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+
+	<h1>
+		<b>Billing Details</b>
+	</h1>
+	<br />
+	<br /> Product Details
+	<p th:value="${product}" />
+	<div th:if="${product != null}">
+
+		<div th:if="${productCategory=='cars'}">
+			<div th:if="${product.prodId!=null}">
+				<p th:text="'Model: ' + ${product.prodModel}" />
+				<p
+					th:text="'Year Of manufacture: ' + ${product.prodYearofmanufacture}" />
+				<p th:text="'Condition: ' + ${product.prodCondition}" />
+				<p th:text="'Mileage: ' + ${product.prodMileage}" />
+				<p th:text="'Description: ' + ${product.prodDescription}" />
+				<p th:text="'Price: ' + ${product.prodPrice}" />
+			</div>
+			<div th:if="${product.prodId==null}">
+				<b>Product not available</b>
+			</div>
+		</div>
+
+
+		<div th:if="${productCategory=='tvs'}">
+			<div th:if="${product.prodId!=null}">
+				<p th:text="'Brand ' + ${product.prodBrand}" />
+				<p th:text="'Diagonal Length: ' + ${product.prodDiagonallength}" />
+				<p th:text="'HD: ' + ${product.prodHd}" />
+				<p th:text="'Length: ' + ${product.prodLength}" />
+				<p th:text="'Width: ' + ${product.prodWidth}" />
+				<p th:text="'Height: ' + ${product.prodHeight}" />
+				<p th:text="'Price: ' + ${product.prodPrice}" />
+				<p th:text="'Description: ' + ${product.prodDescription}" />
+				<p th:text="'Warranty Period: ' + ${product.prodWarrantyPeriod}" />
+			</div>
+			<div th:if="${product.prodId==null}">
+				<b>Product not available</b>
+			</div>
+		</div>
+
+
+
+		<div th:if="${productCategory=='nps'}">
+			<div th:if="${product.prodId!=null}">
+				<p th:text="'Brand: ' + ${product.prodBrand}" />
+				<p th:text="'Color: ' + ${product.prodColor}" />
+				<p th:text="'Description: ' + ${product.prodDescription}" />
+				<p th:text="'Price: ' + ${product.prodPrice}" />
+			</div>
+			<div th:if="${product.prodId==null}">
+				<b>Product not available</b>
+			</div>
+
+		</div>
+
+
+	</div>
+	<form method="post" th:action="@{/Confirm}" th:object="${customer}">
+
+		<h1>
+			<b>Enter Payment information</b>
+		</h1>
+		<br /> <br /> Credit Card No:<input type="text" name="ccname"
+			th:field="*{ccname}" /><br /> <br /> Expiration Date: <select
+			name="month" th:field="*{month}"> Month:
+			<option value="jan">Jan</option>
+			<option value="feb">Feb</option>
+			<option value="mar">March</option>
+			<option value="apr">April</option>
+			<option value="may">May</option>
+			<option value="june">June</option>
+			<option value="july">July</option>
+			<option value="aug">Aug</option>
+			<option value="sept">Sept</option>
+			<option value="oct">Oct</option>
+			<option value="nov">Nov</option>
+			<option value="dec">Dec</option>
+			
+		</select> Day: <select name="day" th:field="*{day}">
+			<option value="01">01</option>
+			<option value="02">02</option>
+			<option value="03">03</option>
+			<option value="04">04</option>
+			<option value="05">05</option>
+			<option value="06">06</option>
+			<option value="07">07</option>
+			<option value="08">08</option>
+			<option value="09">09</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="12">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+			<option value="21">21</option>
+			<option value="22">22</option>
+			<option value="23">23</option>
+			<option value="24">24</option>
+			<option value="25">25</option>
+			<option value="26">26</option>
+			<option value="27">27</option>
+			<option value="28">28</option>
+			<option value="29">29</option>
+			<option value="30">30</option>
+			<option value="31">31</option>
+
+		
+		</select> year: <select name="year" th:field="*{year}">
+			<option value="2017">2017</option>
+			<option value="2018">2018</option>
+			<option value="2019">2019</option>
+			<option value="2020">2020</option>
+		</select> <br /> <br /> Security Code:<input type="text" name="cvv"
+			th:field="*{cvv}" />
+
+
+		<h1>
+			<b>Enter Shipping information</b>
+		</h1>
+		<br /> <br /> First Name:<input type="text" name="fname"
+			th:field="*{fname}" /> <br /> <br />Last Name:<input type="text"
+			name="lname" th:field="*{lname}" /> <br /> <br /> Address Line 1:<input
+			type="text" name="addr1" th:field="*{addr1}" /><br /> <br />
+		Address Line 2:<input type="text" name="addr2" th:field="*{addr2}" /><br />
+		<br /> City: <input type="text" name="city" th:field="*{city}" /> <br />
+		<br /> State: <input type="text" name="state" th:field="*{state}" />
+		<br /> <br /> Zip Code:<input type="text" name="zipcode"
+			th:field="*{zipcode}" /> <br /> <br /> <input type="submit"
+			value="Submit" />
+
+	</form>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out" />
+	</form>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<form th:action="@{/Cancel}" method="post">
+		<input type="submit" value="Cancel" />
+	</form>
+</body>
+</html>

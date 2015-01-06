@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Order Details</title>
+</head>
+<body>
+	<b>Order Status</b>
+	<br/><br/><br/>
+
+	<div th:if="${status}">
+		<b>Your order has been Cancelled!</b>
+	</div>
+	<div th:unless="${status}">
+		<b>Cannot Cancel ! Your Order has already been Processed! </b>
+	</div>
+	
+	 <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+        <br/><br/>
+ <form th:action="@{/Cancel}" method="post">
+            <input type="submit" value="Cancel"/>
+        </form>   
+</body>
+</html>

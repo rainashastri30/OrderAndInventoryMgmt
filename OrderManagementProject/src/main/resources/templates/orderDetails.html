@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Order Details</title>
+</head>
+<body>
+	<h1>
+		<b> Order Details</b>
+	</h1>
+
+	<div th:if="${product != null}">
+
+		<div th:if="${productCategory=='cars'}">
+			<div th:if="${product.prodId!=null}">
+				<p th:text="'Model: ' + ${product.prodModel}" />
+				<p
+					th:text="'Year Of manufacture: ' + ${product.prodYearofmanufacture}" />
+				<p th:text="'Condition: ' + ${product.prodCondition}" />
+				<p th:text="'Mileage: ' + ${product.prodMileage}" />
+				<p th:text="'Description: ' + ${product.prodDescription}" />
+				<p th:text="'Price: ' + ${product.prodPrice}" />
+			</div>
+			<div th:if="${product.prodId==null}"><b>Product not available</b></div>
+		</div>
+
+
+		<div th:if="${productCategory=='tvs'}">
+			<div th:if="${product.prodId!=null}">
+				<p th:text="'Brand ' + ${product.prodBrand}" />
+				<p th:text="'Diagonal Length: ' + ${product.prodDiagonalLength}" />
+				<p th:text="'HD: ' + ${product.prodHd}" />
+				<p th:text="'Length: ' + ${product.prodLength}" />
+				<p th:text="'Width: ' + ${product.prodWidth}" />
+				<p th:text="'Height: ' + ${product.prodHeight}" />
+				<p th:text="'Price: ' + ${product.prodPrice}" />
+				<p th:text="'Description: ' + ${product.prodDescription}" />
+				<p th:text="'Warranty Period: ' + ${product.prodWarrantyPeriod}" />
+			</div>
+			<div th:if="${product.prodId==null}"><b>Product not available</b></div>
+		</div>
+
+
+
+		<div th:if="${productCategory=='nps'}">
+			<div th:if="${product.prodId!=null}">
+				<p th:text="'Brand: ' + ${product.prodBrand}" />
+				<p th:text="'Color: ' + ${product.prodColor}" />
+				<p th:text="'Description: ' + ${product.prodDescription}" />
+				<p th:text="'Price: ' + ${product.prodPrice}" />
+			</div>
+			<div th:if="${product.prodId==null}"><b>Product not available</b></div>
+
+		</div>
+
+
+	</div>
+
+	<br />
+	<br />
+	<B><p th:text="'Order Id is : '+${orderId}" /></B>
+
+
+
+	<br />
+	<br />
+
+	<br />
+	<br />
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out" />
+	</form>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<form th:action="@{/CancelOrder/} + ${orderId}" method="GET">
+		<input type="submit" value="CancelOrder" />
+	</form>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="http://localhost:3000/#/store">Go back to Site</a>
+</body>
+</html>

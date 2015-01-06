@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+   <head>
+    <title>Confirm Details</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+            
+    <body>
+   <b> Kindly Confirm your Details</b>
+    
+    <br/><br/>
+   
+      
+     <b>  Product Details</b>
+    
+    <div th:if="${product != null}">
+    
+<div th:if="${productCategory=='cars'}">
+	<div th:if="${product.prodId!=null}">
+	<p th:text="'Model: ' + ${product.prodModel}" />
+    <p th:text="'Year Of manufacture: ' + ${product.prodYearofmanufacture}" />
+    <p th:text="'Condition: ' + ${product.prodCondition}" />
+    <p th:text="'Mileage: ' + ${product.prodMileage}" />
+    <p th:text="'Description: ' + ${product.prodDescription}" />
+    <p th:text="'Price: ' + ${product.prodPrice}" />
+	</div>
+	<div th:if="${product.prodId==null}">
+		<b>Product not available</b>
+	</div>
+</div>
+
+
+<div th:if="${productCategory=='tvs'}">
+	<div th:if="${product.prodId!=null}">
+	<p th:text="'Brand ' + ${product.prodBrand}" />
+    <p th:text="'Diagonal Length: ' + ${product.prodDiagonallength}" />
+    <p th:text="'HD: ' + ${product.prodHd}" />
+    <p th:text="'Length: ' + ${product.prodLength}" />
+    <p th:text="'Width: ' + ${product.prodWidth}" />
+    <p th:text="'Height: ' + ${product.prodHeight}" />
+    <p th:text="'Price: ' + ${product.prodPrice}" />
+    <p th:text="'Description: ' + ${product.prodDescription}" />
+    <p th:text="'Warranty Period: ' + ${product.prodWarrantyPeriod}" />
+	</div>
+	<div th:if="${product.prodId==null}">
+		<b>Product not available</b>
+	</div>
+</div>
+
+
+
+<div th:if="${productCategory=='nps'}">
+<div th:if="${product.prodId!=null}">
+	<p th:text="'Brand: ' + ${product.prodBrand}" />
+    <p th:text="'Color: ' + ${product.prodColor}" />
+    <p th:text="'Description: ' + ${product.prodDescription}" />
+    <p th:text="'Price: ' + ${product.prodPrice}" />
+	</div>
+	<div th:if="${product.prodId==null}">
+		<b>Product not available</b>
+	</div>
+
+</div>
+
+
+</div>
+
+
+   <br/><br/><br/><br/>
+   
+   <b><h1>Customer Information</h1></b>
+    <form method="post" th:action="@{/addOrder}" >
+    
+     <p th:text="'First Name: ' + ${customer.fname}" />
+     <p th:text="'Last Name: ' + ${customer.lname}" />
+    <p th:text="'Credit Card Number: ' + ${customer.ccname}" />
+    <p th:text="'Expiration Date: ' + ${customer.day}+ '-' +${customer.month}+ '-' +${customer.year}" />
+    <p th:text="'Security Code: ' + ${customer.cvv}" />
+    <p th:text="'Address: ' + ${customer.addr1} + ${customer.addr2}" />
+    <p th:text="'City: ' + ${customer.city}" />
+    <p th:text="'State: ' + ${customer.state}" />
+   
+   <br/><br/><br/><br/>
+   
+   <input type = "submit" value="Confirm Order"/> 
+    </form>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <form th:action="@{/Cancel}" method="post">
+            <input type="submit" value="Cancel"/>
+        </form>        
+    
+    </body>
+    </html>
